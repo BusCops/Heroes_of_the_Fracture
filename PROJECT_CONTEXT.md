@@ -51,7 +51,20 @@ frontend/
 
 Keep `PROJECT_CONTEXT.md` updated automatically every time a feature is completed, a file is added, or the architecture changes. Record the change clearly in the relevant section and update "Current Status & Next Step" when the development step advances.
 
+## Global Design-Token Foundation
+
+`frontend/src/index.css` is the single source of truth for the application's global visual design tokens.
+
+- Tailwind CSS 4 is connected through `@tailwindcss/vite` and loaded with `@import "tailwindcss";`.
+- CSS custom properties in `:root` define the palette, rarity colors, text/ink colors, border widths, role-based radii, hard shadows, HUD spacing and gaps, skew/tilt angles, and typography families.
+- The `@theme` block maps those custom properties into Tailwind's theme namespaces so utilities and custom styles use the same values.
+- The reusable `.text-ink-outline`, `.bg-halftone`, `.comic-panel`, and `.comic-btn` classes use these global tokens directly.
+
+### Component Styling Rule
+
+Never hardcode hex colors, pixel border widths, shadow offsets, or arbitrary radii inside components. Use the global CSS custom properties and Tailwind theme utilities from `frontend/src/index.css` for all colors, borders, shadows, radii, spacing, and typography. Components may use local layout values only where a global token is not applicable.
+
 ## Current Status & Next Step
 
-- **Status:** Step 0 - Fresh Frontend Setup
-- **Next step:** Waiting for the next instruction.
+- **Status:** Step 1 - Global Design-Token Foundation
+- **Next step:** Build UI screens and components using the global Tailwind theme and comic utility classes.

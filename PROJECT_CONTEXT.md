@@ -56,9 +56,12 @@ Keep `PROJECT_CONTEXT.md` updated automatically every time a feature is complete
 `frontend/src/index.css` is the single source of truth for the application's global visual design tokens.
 
 - Tailwind CSS 4 is connected through `@tailwindcss/vite` and loaded with `@import "tailwindcss";`.
-- CSS custom properties in `:root` define the palette, rarity colors, text/ink colors, border widths, role-based radii, hard shadows, HUD spacing and gaps, skew/tilt angles, and typography families.
-- The `@theme` block maps those custom properties into Tailwind's theme namespaces so utilities and custom styles use the same values.
+- The `@theme` block defines the palette, rarity colors, text/ink colors, border widths, role-based radii, hard shadows, HUD spacing and gaps, skew/tilt angles, and typography families as global CSS/Tailwind theme variables.
 - The reusable `.text-ink-outline`, `.bg-halftone`, `.comic-panel`, and `.comic-btn` classes use these global tokens directly.
+- Cosmic dark sections use the deep indigo surface tokens (`--color-bg-cosmic` and `--color-bg-cosmic-deep`) with cyan-to-magenta fracture accents.
+- Story and hero roster sections use the vintage cream and pastel surface tokens to create a warm comic-paper theme.
+- Sharp comic geometry uses `0px` panel/card/button radii, `3px`–`4px` ink borders, and the `6px 6px 0` medium hard-shadow token.
+- `.section-cosmic`, `.section-paper`, `.comic-card-light`, and `.fracture-rift-gradient` provide reusable dual-surface section styles.
 
 ### Component Styling Rule
 

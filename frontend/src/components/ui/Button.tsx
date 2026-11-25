@@ -17,7 +17,7 @@ const buttonVariants = cva(
           "bg-transparent text-[var(--color-text-on-paper)] hover:bg-[var(--color-surface-tint-cream)]",
         destructive:
           "bg-[var(--color-accent-danger)] text-[var(--color-text-primary)] hover:bg-[var(--color-accent-crimson)]/90 focus-visible:border-[var(--color-accent-danger)] focus-visible:ring-[var(--color-accent-danger)]/30",
-        link: "text-primary underline-offset-4 hover:underline",
+        link: "text-accent-energy underline-offset-4 hover:underline",
       },
       size: {
         default:

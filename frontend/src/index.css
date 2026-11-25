@@ -69,15 +69,22 @@
   --tilt-panel-left: -2deg;
   --tilt-panel-right: 2deg;
 
-  --font-display: "Bangers", "Impact", "Haettenschweiler", "Arial Black", sans-serif;
-  --font-body: "Trebuchet MS", "Segoe UI", sans-serif;
-  --font-mono: "Cascadia Mono", "SFMono-Regular", Consolas, monospace;
+  --font-display: "Barlow Condensed", Impact, sans-serif;
+  --font-body: "DM Sans", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+}
+
+@utility font-mono {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
 }
 
 :root {
   color: var(--color-text-primary);
   background: var(--color-bg-void);
   font-family: var(--font-body);
+  font-weight: 500;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -245,13 +252,13 @@ button {
 .comic-btn__label,
 .comic-btn__icon {
   display: inline-flex;
-  transform: skewX(8deg);
+  transform: skewX(8eg);
 }
 
 .comic-btn__icon {
   font-family: var(--font-body);
   font-size: 1.35em;
-  font-weight: 900;
+  font-weight: 700;
   line-height: 0;
 }
 
@@ -342,297 +349,46 @@ button {
   background: var(--color-accent-success);
 }
 
-.comic-action {
+.comic-nav-link {
   position: relative;
+  isolation: isolate;
   display: inline-flex;
+  min-height: 44px;
   align-items: center;
-  justify-content: center;
-}
-
-.comic-action-button {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border: 0;
-  padding: 0;
-  background: transparent;
-  color: var(--color-text-inverse);
-  cursor: pointer;
-  outline: none;
-  -webkit-user-select: none;
-  user-select: none;
-}
-
-.comic-action-button:disabled {
-  cursor: not-allowed;
-  opacity: 0.55;
-  filter: grayscale(0.45);
-}
-
-.comic-action-shadow {
-  position: absolute;
-  inset: 0;
-  background: var(--color-ink-black);
-  transform-origin: center;
-  pointer-events: none;
-}
-
-.comic-action-face {
-  position: relative;
-  z-index: 1;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  border: var(--border-ink-base) solid var(--color-ink-black);
-  border-radius: var(--radius-button);
-  transform: skewX(var(--action-skew));
-  transform-origin: center;
-  transition:
-    transform 150ms cubic-bezier(0.16, 1, 0.3, 1),
-    filter 150ms ease;
-}
-
-.comic-action-button:not(:disabled):hover .comic-action-face,
-.comic-action-button:not(:disabled):focus-visible .comic-action-face {
-  transform: translate(-2px, -2px) scale(1.08) skewX(var(--action-skew));
-  filter: brightness(1.08);
-}
-
-.comic-action-button:not(:disabled):active .comic-action-face {
-  transform: translate(1px, 1px) scale(0.98) skewX(var(--action-skew));
-}
-
-.comic-action-button:focus-visible .comic-action-face {
-  outline: 3px solid var(--color-accent-energy);
-  outline-offset: 4px;
-}
-
-.comic-action-sheen {
-  position: absolute;
-  inset-block: 0;
-  left: -60%;
-  width: 50%;
-  transform: skewX(-12deg);
-  background: rgb(255 255 255 / 0.28);
-  transition: transform 300ms ease-out;
-  pointer-events: none;
-}
-
-.comic-action-button:hover .comic-action-sheen {
-  transform: translateX(340%) skewX(-12deg);
-}
-
-.comic-action-label {
-  position: relative;
-  z-index: 2;
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
+  padding-inline: 0.65rem;
+  color: var(--color-text-on-paper);
   font-family: var(--font-display);
-  font-weight: 900;
-  line-height: 1;
+  font-size: 1.125rem;
+  font-weight: 800;
+  letter-spacing: 0.07em;
   text-transform: uppercase;
-  white-space: nowrap;
 }
 
-.comic-action-arrow {
-  width: 1em;
-  height: 1em;
-  stroke-width: 3;
-  transition: transform 150ms ease;
-}
-
-.comic-action-button:hover .comic-action-arrow {
-  transform: translateX(4px);
-}
-
-.comic-action-button--sm .comic-action-face {
-  min-height: 40px;
-  padding: 8px 16px;
-}
-
-.comic-action-button--md .comic-action-face {
-  min-height: 46px;
-  padding: 12px 24px;
-}
-
-.comic-action-button--lg .comic-action-face {
-  min-height: 52px;
-  padding: 14px 32px;
-}
-
-.comic-action-button--sm .comic-action-label {
-  font-size: 0.75rem;
-  letter-spacing: 0.09em;
-}
-
-.comic-action-button--md .comic-action-label {
-  font-size: 0.875rem;
-  letter-spacing: 0.1em;
-}
-
-.comic-action-button--lg .comic-action-label {
-  font-size: 1rem;
-  letter-spacing: 0.11em;
-}
-
-.comic-action-button--yellow .comic-action-face {
-  background: var(--color-accent-primary);
-  color: var(--color-text-inverse);
-}
-
-.comic-action-button--yellow:not(:disabled):hover .comic-action-face {
-  background: #ffe94d;
-}
-
-.comic-action-button--crimson .comic-action-face {
-  background: var(--color-accent-crimson);
-  color: var(--color-text-primary);
-}
-
-.comic-action-button--cyan .comic-action-face {
-  background: var(--color-rift-cyan);
-  color: var(--color-text-inverse);
-}
-
-.comic-action-button--ink .comic-action-face {
-  background: var(--color-bg-cosmic-deep);
-  color: var(--color-accent-primary);
-}
-
-.comic-popup {
+.comic-nav-link::before {
   position: absolute;
-  left: 50%;
-  z-index: 30;
-  width: 256px;
-  transform: translate(-50%, 8px) scale(0.95);
+  z-index: -1;
+  inset: 4px 0;
+  border: var(--border-ink-thin) solid var(--color-ink-black);
+  background: var(--color-accent-primary);
+  box-shadow: var(--shadow-comic-sm);
+  content: "";
   opacity: 0;
-  pointer-events: none;
-  transition:
-    transform 170ms cubic-bezier(0.16, 1, 0.3, 1),
-    opacity 150ms ease;
+  transform: skewX(var(--action-skew));
 }
 
-.comic-popup--top {
-  bottom: calc(100% + 16px);
-}
-
-.comic-popup--bottom {
-  top: calc(100% + 16px);
-  transform: translate(-50%, -8px) scale(0.95);
-}
-
-.comic-popup.is-visible {
-  transform: translate(-50%, 0) scale(1);
+.comic-nav-link:hover::before,
+.comic-nav-link:focus-visible::before {
   opacity: 1;
 }
 
-.comic-popup.is-interactive {
-  pointer-events: auto;
-}
-
-.comic-popup-shadow {
-  position: absolute;
-  inset: 0;
-  background: var(--color-ink-black);
-  transform: translate(5px, 5px);
-}
-
-.comic-popup-face {
-  position: relative;
-  border: var(--border-ink-base) solid var(--color-ink-black);
-  padding: 12px 16px;
-  text-align: left;
-  background: var(--color-bg-cosmic-deep);
-  color: var(--color-text-primary);
-}
-
-.comic-popup-kicker,
-.comic-popup-title,
-.comic-popup-hint {
-  font-family: var(--font-display);
-  font-weight: 900;
-  text-transform: uppercase;
-}
-
-.comic-popup-kicker {
-  margin-bottom: 4px;
-  color: var(--color-accent-primary);
-  font-size: 0.75rem;
-  letter-spacing: 0.14em;
-}
-
-.comic-popup-title {
-  font-size: 1.125rem;
-  line-height: 1.1;
-}
-
-.comic-popup-description {
-  margin: 6px 0 0;
-  font-size: 0.75rem;
-  line-height: 1.5;
-  color: var(--color-text-secondary);
-}
-
-.comic-popup-hint {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-top: 10px;
-  padding-top: 8px;
-  border-top: 1px solid rgb(255 255 255 / 0.15);
-  color: var(--color-rift-cyan);
-  font-size: 0.6875rem;
-  letter-spacing: 0.08em;
-}
-
-.comic-popup-hint svg {
-  width: 12px;
-  height: 12px;
-}
-
-.comic-popup-pointer {
-  position: absolute;
-  left: 50%;
-  width: 14px;
-  height: 14px;
-  transform: translateX(-50%) rotate(45deg);
-  background: var(--color-bg-cosmic-deep);
-}
-
-.comic-popup--top .comic-popup-pointer {
-  bottom: -9px;
-  border-right: var(--border-ink-base) solid var(--color-ink-black);
-  border-bottom: var(--border-ink-base) solid var(--color-ink-black);
-}
-
-.comic-popup--bottom .comic-popup-pointer {
-  top: -9px;
-  border-left: var(--border-ink-base) solid var(--color-ink-black);
-  border-top: var(--border-ink-base) solid var(--color-ink-black);
-}
-
-.comic-popup--light .comic-popup-face,
-.comic-popup--light .comic-popup-pointer {
-  background: var(--color-surface-paper-card);
-  color: var(--color-text-on-paper);
-}
-
-.comic-popup--yellow .comic-popup-face,
-.comic-popup--yellow .comic-popup-pointer {
-  background: var(--color-accent-primary);
-  color: var(--color-text-inverse);
-}
-
-.comic-popup--crimson .comic-popup-face,
-.comic-popup--crimson .comic-popup-pointer {
-  background: var(--color-accent-crimson);
-  color: var(--color-text-primary);
+.comic-nav-link:focus-visible {
+  outline: 2px solid var(--color-ink-black);
+  outline-offset: 2px;
 }
 
 .comic-ui-button {
+  --comic-button-skew: -6deg;
+
   position: relative;
   z-index: 1;
   min-width: 150px;
@@ -647,10 +403,9 @@ button {
   line-height: 1;
   text-transform: uppercase;
 
-  /* Default state: -12deg slant + 6px shadow */
-  transform: translate(0, 0) skewX(-12deg);
+  transform: skewX(var(--comic-button-skew));
   transform-origin: center;
-  box-shadow: 6px 6px 0 var(--color-ink-black);
+  box-shadow: var(--shadow-comic-md);
   transition:
     transform 100ms ease-out,
     box-shadow 100ms ease-out,
@@ -662,30 +417,18 @@ button {
   align-items: center;
   justify-content: center;
   gap: 8px;
-  transform: skewX(12deg);
+  transform: skewX(0deg);
 }
 
 .comic-ui-button:not(:disabled):hover,
 .comic-ui-button:not(:disabled):focus-visible {
-  transform: translate(-4px, -4px) skewX(-12deg);
+  transform: translate(-4px, -4px) skewX(var(--comic-button-skew));
   box-shadow: 10px 10px 0 var(--color-ink-black);
-  filter: brightness(1.06);
+  filter: brightness(1.00);
 }
 
 .comic-ui-button:not(:disabled):active {
-  transform: translate(4px, 4px) skewX(-12deg);
-  box-shadow: 2px 2px 0 var(--color-ink-black);
-}
-
-.comic-ui-button:hover,
-.comic-ui-button:focus-visible {
-  transform: translate(-2px, -2px) scale(1.08) skewX(-8deg);
-  filter: brightness(1.08);
-  box-shadow: var(--shadow-comic-lg);
-}
-
-.comic-ui-button:active {
-  transform: translate(1px, 1px) scale(0.98) skewX(-8deg);
+  transform: translate(4px, 4px) skewX(var(--comic-button-skew));
   box-shadow: var(--shadow-comic-sm);
 }
 
